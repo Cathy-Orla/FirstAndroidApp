@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         showCountTextView.setText(count.toString());
     }
+    private static final String TOTAL_COUNT = "total_count";
+
     public void randomMe(View view){
-        Intent randomIntent = new Intent(this, SecondActivity.class);
+        Intent randomIntent = new Intent(this, SecondActivity.class); //creates intent
+        TextView showCountTextView = (TextView) findViewById(R.id.textView); //gets the textview showing the count
+        String countString = showCountTextView.getText().toString(); //gets value of count of the textview
+        int count = Integer.parseInt(countString); //converts count to int
+        randomIntent.putExtra(TOTAL_COUNT, count); //passes count as an extra through intent
         startActivity(randomIntent);
     }
 }
